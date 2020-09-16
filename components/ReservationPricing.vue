@@ -1,0 +1,461 @@
+<template>
+    <div id="card" class="card">
+        <h1 class="card__title">{{title}}</h1>
+        <div class="card__body">
+            <div class="price__toggle__container">
+                <div class="price__toggle" :class="{active: !!twoHourActive}"
+                     @click="function() {twoHourActive = true; fourHourActive = false; sixHourActive = false; eightHourActive = false;}">
+                    2
+                    uur
+                </div>
+                <div class="price__toggle" :class="{active: !!fourHourActive}"
+                     @click="function(){twoHourActive = false; fourHourActive = true;sixHourActive = false; eightHourActive = false;}">
+                    4
+                    uur
+                </div>
+                <div class="price__toggle" :class="{active: !!sixHourActive}"
+                     @click="function(){twoHourActive = false; fourHourActive = false; sixHourActive = true; eightHourActive = false;}">
+                    6
+                    uur
+                </div>
+                <div class="price__toggle" :class="{active: !!eightHourActive}"
+                     @click="function() {twoHourActive = false; fourHourActive = false; sixHourActive = false; eightHourActive = true;}">
+                    8
+                    uur
+                </div>
+            </div>
+            <transition name="fade-in-out" mode="out-in">
+                <div v-if="! displayForm">
+                    <div>
+                        <div v-if="!!twoHourActive">
+                            <p class="price"><span class="price__symbol">€</span>{{priceTwoHour}},-</p>
+                            <p class="price__tag"><span>(excl. BTW)</span></p>
+                        </div>
+                        <div v-else-if="!!fourHourActive">
+                            <p class="price"><span class="price__symbol">€</span>{{priceFourHour}},-</p>
+                            <p class="price__tag"><span>(excl. BTW)</span></p>
+                        </div>
+                        <div v-else-if="!!sixHourActive">
+                            <p class="price"><span class="price__symbol">€</span>{{priceSixHour}},-</p>
+                            <p class="price__tag"><span>(excl. BTW)</span></p>
+                        </div>
+                        <div v-else-if="!!eightHourActive">
+                            <p class="price"><span class="price__symbol">€</span>{{priceEightHour}},-</p>
+                            <p class="price__tag"><span>(excl. BTW)</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
+                    <form class="form">
+                        <label for="time-picker">{{timeToString}} vanaf: </label>
+
+                        <input type="time" min="9:00" max="18:00" step="1800" v-model="time">
+                        <label for="date-picker">Datum: </label>
+                        <v-date-picker
+                                id="date-picker"
+                                v-model="date"
+                                class="date"
+                                :borderRadius="0"
+                                data='["YYYY-MM-DD"]'
+                        />
+                    </form>
+                </div>
+            </transition>
+
+        </div>
+        <transition name="fade-in-out" mode="out-in">
+            <div class="container" v-if="! displayForm" key="info">
+                <ol class="card__list">
+                    <li class="card__list__item" v-html="proOne" />
+                    <li class="card__list__item" v-html="proTwo" />
+                    <li v-if="proThree" class="card__list__item" v-html="proThree" />
+                </ol>
+                <button class="button card__button"
+                        type="button"
+                        @click="displayForm = true">Kies
+                </button>
+            </div>
+            <div class="container" v-else>
+                <span class="sub-text">Vul hier uw persoonlijke gegevens in:</span>
+                <form class="form">
+                    <label for="email">Email: </label>
+                    <input required type="text" id="email" v-model="email" />
+                    <label for="tel">Telefoon nummer: </label>
+                    <input required type="text" id="tel" v-model="phone" />
+                    <label for="name">volledige naam: </label>
+                    <input required type="text" id="name" v-model="fullName" />
+                </form>
+                <button @click="sendOrder"
+                        class="button card__button send__button"
+                        type="button">
+                    <div class="lds-dual-ring" v-if="loading"></div>
+                    Verstuur
+                </button>
+                <span class="go-back" @click="displayForm = false">< Terug</span>
+            </div>
+        </transition>
+    </div>
+</template>
+
+<script>
+    import axios from 'axios';
+
+    export default {
+        name: "Pricing",
+        props: [
+            'proOne',
+            'proTwo',
+            'proThree',
+            'months',
+            'priceTwelveMonth',
+            'priceSixMonth',
+            'priceTwoHour',
+            'priceFourHour',
+            'priceSixHour',
+            'priceEightHour',
+            'title',
+        ],
+        data() {
+            return {
+                twelveMonthActive: true,
+                twoHourActive: true,
+                fourHourActive: false,
+                sixHourActive: false,
+                eightHourActive: false,
+                displayForm: false,
+                loading: false,
+                email: "",
+                phone: "",
+                fullName: "",
+                date: "",
+                time: "",
+            }
+        },
+        computed: {
+            timeToString() {
+                if (this.sixHourActive) {
+                    return "6 uur"
+                }
+                if (!this.twoHourActive) {
+                    return this.fourHourActive ? " 4 uur" : "8 uur"
+                }
+                return "2 uur"
+            }
+        },
+        methods: {
+            sendOrder() {
+                this.loading = true;
+                let data = {
+                    'email': this.email,
+                    'phone': this.phone,
+                    'fullName': this.fullName,
+                    'plan': this.title,
+                    'time': this.timeToString,
+                    'fromTime': this.time,
+                    'date': this.date,
+                };
+                let accepted = true;
+                if (!this.email) {
+                    this.$notify({ group: 'error', type: 'error', title: 'Mislukt !', text: 'email niet ingevuld' });
+                    accepted = false;
+                }
+                if (!this.phone) {
+                    this.$notify({
+                        group: 'error',
+                        type: 'error',
+                        title: 'Mislukt !',
+                        text: 'Telefoonnummer niet ingevuld'
+                    });
+                    accepted = false;
+                }
+                if (!this.fullName) {
+                    this.$notify({ group: 'error', type: 'error', title: 'Mislukt !', text: 'Naam niet ingevuld' });
+                    accepted = false;
+                }
+                if (!this.time) {
+                    this.$notify({ group: 'error', type: 'error', title: 'Mislukt !', text: 'Tijd niet ingevuld' });
+                    accepted = false;
+                }
+                if (!this.date) {
+                    this.$notify({ group: 'error', type: 'error', title: 'Mislukt !', text: 'Datum niet ingevuld' });
+                    accepted = false;
+                }
+
+                if (accepted) {
+                    data.date = new Date(data.date).toLocaleDateString();
+
+                    axios.post('/api/send-order', data).then(response => {
+                        this.$notify({
+                            group: 'reservations',
+                            title: 'Aanvraag succesvol! ',
+                            text: 'Bekijk je mailbox voor meer informatie',
+                        });
+                        this.displayForm = false;
+                        this.loading = false;
+                    })
+
+                } else {
+                    this.loading = false;
+                }
+            },
+        }
+    }
+</script>
+<style scoped>
+
+    .lds-dual-ring {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 16px;
+        height: 16px;
+        margin: 2px;
+
+        border-radius: 50%;
+        border: 3px solid #ffffff;
+        border-color: #ffffff transparent #ffffff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    i {
+        font-style: italic;
+        font-weight: 400;
+    }
+
+    .vue__time-picker >>> .display-time {
+        padding: 12px !important;
+    }
+</style>
+<style lang="scss" scoped>
+
+    .go-back {
+        position   : absolute;
+        bottom     : 0;
+        font-size  : 13px;
+        width      : 100%;
+        text-align : center;
+    }
+
+    .sub-text {
+        font-size : 12px;
+    }
+
+    .container {
+        text-align : left;
+        height     : 310px;
+        width      : 100%;
+        left       : 0;
+        right      : 0;
+        display    : inline-block;
+    }
+
+    .form {
+        width : 100%;
+
+        label {
+            display     : block;
+            text-align  : left;
+            font-size   : 14px;
+            line-height : 16px;
+            margin-top  : 8px;
+        }
+
+        input {
+            width        : calc(100% - 8px);
+
+            border       : none;
+            height       : 32px;
+            padding-left : 8px;
+            background   : #eeeeee;
+        }
+    }
+
+    .button {
+        position : absolute;
+        width    : 80%;
+        left     : 10%;
+        bottom   : 40px;
+    }
+
+    span {
+        font-size : .6rem;
+    }
+
+    .card {
+        z-index : 1;
+    }
+
+
+    html {
+        font-size  : 1rem;
+        color      : #777777;
+        background : #d5d5d5;
+        background : -webkit-gradient(linear, left top, left bottom, from(#d5d5d5), to(#ffffff));
+        background : linear-gradient(#d5d5d5, #ffffff);
+        height     : 100%;
+    }
+
+    body {
+        display               : -webkit-box;
+        display               : flex;
+        -webkit-box-orient    : horizontal;
+        -webkit-box-direction : normal;
+        flex-direction        : row;
+        -webkit-box-pack      : center;
+        justify-content       : center;
+    }
+
+    .card {
+        background-color           : #204025;
+        color                      : #ffffff;
+        padding                    : 16px 32px 32px 32px;
+        margin                     : 42px 16px;
+
+        width                      : 280px;
+        height                     : 520px;
+        box-shadow                 : 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        transition-property        : box-shadow, transform;
+        transition-duration        : .3s;
+        transition-timing-function : cubic-bezier(1.5, 2, 0.175, 1);
+
+
+        &:hover {
+            transform : scale(1.01);
+        }
+    }
+
+    .cardsmall {
+        height : 420px;
+    }
+
+    .card__title {
+        font-size      : 0.875rem;
+        text-transform : uppercase;
+        letter-spacing : 4px;
+        padding-bottom : 8px;
+        height         : 50px;
+    }
+
+    .card__body {
+        position       : relative;
+        border-top     : 2px solid #777777;
+        border-bottom  : 2px solid #777777;
+        padding-bottom : 16px;
+    }
+
+    .price {
+        font-size    : 4rem;
+        font-weight  : bold;
+        text-shadow  : 0 0 1px #000000;
+        color        : white;
+        padding-left : 24px;
+        margin       : 32px 0;
+    }
+
+    .price__toggle__container {
+        display        : flex;
+        flex-direction : row;
+    }
+
+    .price__toggle {
+        width     : 50%;
+        padding   : 12px;
+        font-size : 16px;
+        cursor    : pointer;
+
+        &.active {
+            /*border-bottom: 1px solid #999999;*/
+            /*border-left: 1px solid #999999 ;*/
+            /*border-right: 1px solid #999999 ;*/
+            background-color   : rgba(255, 255, 255, .05);
+
+            /*-moz-box-shadow:    unset;*/
+            /*-webkit-box-shadow: unset;*/
+            /*box-shadow:         unset;*/
+
+            -moz-box-shadow    : inset 0 0 2px #ffffff;
+            -webkit-box-shadow : inset 0 0 2px #ffffff;
+            box-shadow         : inset 0 0 2px #ffffff;
+
+        }
+    }
+
+    .price__symbol {
+        position  : absolute;
+        left      : 0px;
+        top       : 42px;
+        font-size : 1.5rem;
+    }
+
+    .price__tag {
+        text-transform : uppercase;
+        margin-bottom  : 8px;
+    }
+
+    ol {
+        list-style  : none;
+        margin-left : -40px;
+    }
+
+    li {
+        padding   : 6px 0;
+        font-size : 1rem;
+    }
+
+    li:before {
+        content      : "-";
+        margin-right : 8px;
+        font-size    : 0.875rem;
+    }
+
+    .card__button {
+        border           : none;
+        background-color : #e88a60;
+        margin-top       : 32px;
+        padding          : 16px 0;
+        font-size        : 1.25rem;
+        font-weight      : bold;
+        letter-spacing   : 2.6666666667px;
+        text-transform   : uppercase;
+        text-shadow      : 1px 1px #3a3a3a;
+        color            : #ffffff;
+        box-shadow       : 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        cursor           : pointer;
+    }
+
+    .containerSmall {
+        height : 232px;
+    }
+
+    .fade-in-out-enter-active, .fade-in-out-leave-active {
+        transition : opacity .5s;
+    }
+
+    .fade-in-out-enter, .fade-in-out-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
+        opacity : 0;
+    }
+
+    .date {
+        width         : calc(100% - 24px);
+        display       : block;
+        border-radius : 0px;
+    }
+
+
+</style>
