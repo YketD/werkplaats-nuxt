@@ -40,7 +40,8 @@ export default {
     */
     plugins: [
         { src: '~/plugins/vue-notification', mode: 'client' },
-        { src: '~/plugins/font-awesome', mode: 'client' }
+        { src: '~/plugins/font-awesome', mode: 'client' },
+        { src: '~/plugins/v-calendar', mode: 'client' }
     ],
     /*
     ** Auto import components
@@ -56,8 +57,17 @@ export default {
     */
     modules: [
         '@nuxtjs/axios',
+        '@nuxtjs/proxy',
         '@nuxtjs/prismic',
     ],
+    proxy: {
+        '/api': {
+            target: 'http://localhost:8000/api',
+            pathRewrite: {
+                '^/api' : '/'
+            }
+        }
+    },
     /*
     ** Build configuration
     ** See https://nuxtjs.org/api/configuration-build/
@@ -69,6 +79,6 @@ export default {
     },
 
     axios: {
-        baseURL: 'http://localhost:8000', // Used as fallback if no runtime config is provided
+        baseURL: 'http://localhost:8000/api', // Used as fallback if no runtime config is provided
     },
 }

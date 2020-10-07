@@ -49,15 +49,14 @@
                     <form class="form">
                         <label for="time-picker">{{timeToString}} vanaf: </label>
 
-                        <input type="time" min="9:00" max="18:00" step="1800" v-model="time">
+                        <input id="time-picker" type="time" min="9:00" max="18:00" step="1800" v-model="time">
                         <label for="date-picker">Datum: </label>
                         <v-date-picker
                                 id="date-picker"
                                 v-model="date"
                                 class="date"
                                 :borderRadius="0"
-                                data='["YYYY-MM-DD"]'
-                        />
+                                data='["YYYY-MM-DD"]'  />
                     </form>
                 </div>
             </transition>
@@ -98,8 +97,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
-
+    import axios from 'axios'
     export default {
         name: "Pricing",
         props: [
@@ -192,8 +190,9 @@
                         });
                         this.displayForm = false;
                         this.loading = false;
-                    })
-
+                    }).catch(e=>{
+                        console.log(e);
+                    });
                 } else {
                     this.loading = false;
                 }
