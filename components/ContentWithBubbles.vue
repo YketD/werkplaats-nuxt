@@ -38,10 +38,10 @@
             <div class="small-bubble"></div>
             <div class="small-bubble"></div>
             <div class="small-bubble">
-                <img class="icon" src="/storage/img/icons/parking.png" />
+                <img class="icon" src="~/assets/img/parking.png" />
             </div>
             <div class="small-bubble">
-                <img class="icon" src="/storage/img/icons/restaurant.png" />
+                <img class="icon" src="~/assets/img/restaurant.png" />
             </div>
         </div>
     </div>

@@ -37,20 +37,20 @@
             <div id="bubbles">
                 <div class="bubble var-1 bubble-1">
                     <div class="bubble-content">
-                        <img alt="Restaurant" class="icon" src="/storage/img/icons/restaurant.png">
+                        <img alt="Restaurant" class="icon" src="~/assets/img/restaurant.png">
                         ± 50m
                     </div>
                 </div>
                 <div class="bubble var-1 bubble-2">
                     <div class="bubble-content">
-                        <img alt="Parking" class="icon" src="/storage/img/icons/parking.png">
+                        <img alt="Parking" class="icon" src="~/assets/img/parking.png">
                         <div class="larger">Gratis</div>
                         in directe omgeving
                     </div>
                 </div>
                 <div class="bubble var-1 bubble-3">
                     <div class="bubble-content">
-                        <img alt="Transit" class="icon" src="/storage/img/icons/transport.png">
+                        <img alt="Transit" class="icon" src="~/assets/img/transport.png">
                         ± 700m
                     </div>
                 </div>
@@ -142,11 +142,8 @@
                 }
 
                 if (accepted)
-                    this.$http.post('api/send-message',
-                        this.mailData,
-                        {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        }
+                    this.$axios.post('api/send-message',
+                        this.mailData
                     ).then(response => {
                         this.$notify({
                             group: 'reservations',
@@ -183,7 +180,7 @@
             mode: 'out-in'
         },
         async asyncData({ $prismic, error }) {
-            try{
+            try {
                 const documentResponse = await $prismic.api.query($prismic.predicates.at("document.type", "contact"));
                 let document = documentResponse.results[0].data;
 
@@ -253,7 +250,7 @@
     .contact-info-container {
         text-align : left;
         z-index    : 1;
-        margin-top:24px;
+        margin-top : 24px;
     }
 
     .contact-table {

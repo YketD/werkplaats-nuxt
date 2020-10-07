@@ -38,7 +38,10 @@ export default {
     ** Plugins to load before mounting the App
     ** https://nuxtjs.org/guide/plugins
     */
-    plugins: [],
+    plugins: [
+        { src: '~/plugins/vue-notification', mode: 'client' },
+        { src: '~/plugins/font-awesome', mode: 'client' }
+    ],
     /*
     ** Auto import components
     ** See https://nuxtjs.org/api/configuration-components
@@ -63,5 +66,9 @@ export default {
 
     prismic: {
         endpoint: 'https://werkplaats75c.prismic.io/api/v2',
+    },
+
+    axios: {
+        baseURL: 'http://localhost:8000', // Used as fallback if no runtime config is provided
     },
 }

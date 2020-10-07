@@ -36,6 +36,7 @@
                         Toegang
                         tot het pand
                         is van
+                        Ma t/m Za
                         8.00 – 22.00 u.
                     </div>
                 </div>

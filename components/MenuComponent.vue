@@ -1,7 +1,7 @@
 <template>
     <div class="menu-container">
         <div class="menu-logo">
-            <img class="logo" src="/storage/img/werkplaats75c.png" />
+            <img class="logo" src="~/assets/img/werkplaats75c.png" />
         </div>
         <div class="right-menu-container">
             <div class="menu-options">
@@ -12,7 +12,7 @@
                 <div class="calendar-icon-container menu-item">
                     <a href="https://www.supersaas.nl/schedule/werkplaats75c/ruimte_reserveren" target="_blank">
                         <div class="calendar-icon">
-                            <img class="icon" src="/storage/img/icons/calendar-2.png" />
+                            <img class="icon" src="~/assets/img/calendar-2.png" />
                         </div>
                     </a>
                 </div>
