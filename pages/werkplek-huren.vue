@@ -141,6 +141,16 @@
     export default {
         name: "ContactPage",
         components: { PricingCard },
+        head: {
+            title: 'Werkplaats 75C - Huur uw Flexibele werkplek',
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Huur uw vaste of flexibele werkplek - Werkplaats75C biedt fijne Flexibele werkplekken, met vergader- en workshopruimte, flexibele openingstijden voor zzp-ers en co-workers.'
+                }
+            ],
+        },
         data() {
             return {
                 document:undefined,

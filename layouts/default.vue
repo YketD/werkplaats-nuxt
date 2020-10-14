@@ -15,6 +15,19 @@
     export default {
         name: 'app',
         components: { MenuComponent },
+        head: {
+            title: 'Werkplaats 75c',
+            meta: [
+                { charset: 'utf-8' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Werkplaats75C biedt fijne Flexibele werkplekken, met vergader- en workshopruimte, flexibele openingstijden voor zzp-ers en co-workers.'
+                }
+            ],
+            link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+        },
         data() {
             return {
                 image: this.$store.state.menu.image,

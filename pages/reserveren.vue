@@ -147,6 +147,16 @@
     export default {
         name: "ContactPage",
         components: { PricingCard },
+        head: {
+            title: 'Werkplaats 75C - Workshopruimte of Vergaderruimte',
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Reserveer uw workshop of vergaderruimte - Werkplaats75C biedt fijne Flexibele werkplekken, met vergader- en workshopruimte, flexibele openingstijden voor zzp-ers en co-workers.'
+                }
+            ],
+        },
         data() {
             return {
                 document: undefined,

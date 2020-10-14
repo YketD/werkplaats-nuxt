@@ -112,6 +112,16 @@
 <script>
     export default {
         name: "ContactPage",
+        head: {
+            title: 'Werkplaats 75C - Contact',
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Neem contact met ons op! - Werkplaats75C biedt fijne Flexibele werkplekken, met vergader- en workshopruimte, flexibele openingstijden voor zzp-ers en co-workers.'
+                }
+            ],
+        },
         methods: {
             sendMail() {
                 let accepted = true;
