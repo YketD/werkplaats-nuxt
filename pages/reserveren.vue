@@ -95,6 +95,7 @@
                 </div>
             </div>
             <div v-if="true" class="price-cards">
+                <strippen-kaart />
                 <pricing-card
                         :price-two-hour="30"
                         :price-four-hour="60"
@@ -143,10 +144,11 @@
 
 <script>
     import PricingCard from "../components/ReservationPricing";
+    import StrippenKaart from "../components/StrippenKaart";
 
     export default {
         name: "ContactPage",
-        components: { PricingCard },
+        components: { StrippenKaart, PricingCard },
         head: {
             title: 'Werkplaats 75C - Workshopruimte of Vergaderruimte',
             meta: [

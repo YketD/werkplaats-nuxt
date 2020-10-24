@@ -59,6 +59,8 @@
                 </div>
             </div>
             <div v-if="true" class="price-cards">
+                <strippen-kaart />
+
                 <pricing-card
                         :price-twelve-month="175"
                         :price-six-month="185"
@@ -137,10 +139,11 @@
 
 <script>
     import PricingCard from "../components/Pricing";
+    import StrippenKaart from "../components/StrippenKaart";
 
     export default {
         name: "ContactPage",
-        components: { PricingCard },
+        components: { PricingCard, StrippenKaart },
         head: {
             title: 'Werkplaats 75C - Huur uw Flexibele werkplek',
             meta: [
