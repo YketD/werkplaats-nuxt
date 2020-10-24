@@ -95,7 +95,6 @@
                 </div>
             </div>
             <div v-if="true" class="price-cards">
-                <strippen-kaart />
                 <pricing-card
                         :price-two-hour="30"
                         :price-four-hour="60"

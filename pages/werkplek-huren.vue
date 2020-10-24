@@ -59,8 +59,6 @@
                 </div>
             </div>
             <div v-if="true" class="price-cards">
-                <strippen-kaart />
-
                 <pricing-card
                         :price-twelve-month="175"
                         :price-six-month="185"
@@ -102,6 +100,7 @@
                         :pro-one="'3 u gratis gebruik per week vergaderruimten op de werkdag, <i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
                         :pro-three="'toegang 8.00 u – 22.00 u'" />
+                <strippen-kaart />
             </div>
 
             <div class="mobile-menu">
