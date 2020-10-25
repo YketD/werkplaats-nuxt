@@ -49,7 +49,6 @@
       mode: 'out-in'
     },
     beforeMount() {
-      // console.log(this.document.hoofd_afbeelding.url)
       this.$store.commit('menu/setImage', this.document.hoofd_afbeelding.url);
     },
     async asyncData({ $prismic, error }) {
