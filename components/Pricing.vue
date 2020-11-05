@@ -63,6 +63,7 @@
                     <li class="card__list__item" v-html="proOne" />
                     <li class="card__list__item" v-html="proTwo" />
                     <li v-if="proThree" class="card__list__item" v-html="proThree" />
+                    <li v-if="proFour" class="card__list__item" v-html="proFour" />
                 </ol>
                 <button class="button card__button"
                         type="button"
@@ -99,6 +100,7 @@
             'proOne',
             'proTwo',
             'proThree',
+            'proFour',
             'months',
             'priceTwelveMonth',
             'priceSixMonth',

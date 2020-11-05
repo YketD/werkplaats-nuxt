@@ -39,34 +39,16 @@
                     </div>
                 </div>
             </div>
-            <div v-if="false" class="green-content-box">
-                <div class="green-content">
-                    <div class="grid-3">
-                        <div class="grid-column bold">Verhuur van de vergaderruimten</div>
-                        <div class="grid-column bold">Per 2 u / 4 u / 8 u</div>
-                        <div class="grid-column bold">Aantal personen</div>
-
-
-                        <div class="grid-column bold">Workshop-/ vergaderruimten</div>
-                        <div class="grid-column">€ 30,00/ € 60,00/ € 90,00</div>
-                        <div class="grid-column">20 á 25 personen</div>
-
-
-                        <div class="grid-column bold">Spreekkamer</div>
-                        <div class="grid-column">€ 20,00/ € 40,00/ € 70,00</div>
-                        <div class="grid-column">6 á 8 personen</div>
-                    </div>
-                </div>
-            </div>
-            <div v-if="true" class="price-cards">
+            <div class="price-cards">
                 <pricing-card
                         :price-twelve-month="175"
                         :price-six-month="185"
                         :title="'Onbeperkt'"
                         :months="true"
-                        :pro-one="'12 u gratis gebruik vergaderruimten per week<br /><i>mits beschikbaar</i>'"
+                        :pro-one="'12 u gratis gebruik vergaderruimten per week, <i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
-                        :pro-three="'toegang 8.00 u – 22.00 u \n op zondag 10.00 u – 17.00 '" />
+                        :pro-three="'toegang 8.00 u – 22.00 u'"
+                        :pro-four="'Ma t/m Za: 8.00 u – 22.00 u'" />
                 <pricing-card
                         :price-twelve-month="220"
                         :price-six-month="235"
@@ -74,7 +56,8 @@
                         :months="true"
                         :pro-one="'12 u gratis gebruik vergaderruimten per week, <i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
-                        :pro-three="'toegang 8.00 u – 22.00 u \n op zondag 10.00 u – 17.00 '" />
+                        :pro-three="'Ma t/m Za: 8.00 u – 22.00 u'"
+                        :pro-four="'Ma t/m Za: 8.00 u – 22.00 u'"/>
                 <pricing-card
                         :price-twelve-month="150"
                         :price-six-month="150"
@@ -82,7 +65,7 @@
                         :months="true"
                         :pro-one="'9 u gratis gebruik per week vergaderruimten op de werkdagen, <i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
-                        :pro-three="'toegang 8.00 u – 22.00 u'" />
+                        :pro-three="'Ma t/m Za 8.00 u – 22.00 u'" />
                 <pricing-card
                         :price-twelve-month="125"
                         :price-six-month="125"
@@ -90,7 +73,7 @@
                         :months="true"
                         :pro-one="'6 u gratis gebruik per week vergaderruimten op de werkdagen,<i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
-                        :pro-three="'toegang 8.00 u – 22.00 u'"
+                        :pro-three="'Ma t/m Za 8.00 u – 22.00 u'"
                 />
                 <pricing-card
                         :price-twelve-month="75"
@@ -99,7 +82,7 @@
                         :months="true"
                         :pro-one="'3 u gratis gebruik per week vergaderruimten op de werkdag, <i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
-                        :pro-three="'toegang 8.00 u – 22.00 u'" />
+                        :pro-three="'Ma t/m Za 8.00 u – 22.00 u'" />
                 <strippen-kaart />
             </div>
 
