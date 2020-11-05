@@ -7,6 +7,9 @@
                     <a target="_blank" v-if="ondernemer.link_to_ondernemer.url" :href="ondernemer.link_to_ondernemer.url" class="image-container">
                         <img v-if="ondernemer.logo" :src="ondernemer.logo.url" />
                     </a>
+                    <div v-else-if="ondernemer.logo" class="image-container">
+                        <img :src="ondernemer.logo.url" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,7 +114,8 @@
                 overflow      : hidden;
 
                 img {
-                    width      : 100%;
+                    width      : calc(100% - 10px);
+                    padding: 5px;
                     object-fit : cover;
                 }
             }
