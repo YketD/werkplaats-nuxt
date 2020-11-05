@@ -54,11 +54,6 @@
                         ± 700m
                     </div>
                 </div>
-                <a target="_blank" href="/storage/img/docs/privacy.pdf">
-                    <div class="privacy-policy">
-                        Privacy policy
-                    </div>
-                </a>
             </div>
             <div class="green-content-box">
                 <div class="padding">
@@ -266,7 +261,7 @@
     .contact-table {
         width                 : 61vw;
         display               : grid;
-        grid-template-columns : .5fr .5fr 1fr;
+        grid-template-columns : .5fr 1fr 1fr;
 
         .grid-item {
             margin      : 12px;
