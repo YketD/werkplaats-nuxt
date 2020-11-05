@@ -5,7 +5,7 @@
             <div>
                 <div class="price-container">
                     <p class="price"><span class="price__symbol">€</span>99,-</p>
-                    <p class="price__tag">Eenmalig <span>(excl. BTW)</span></p>
+                    <p class="price__tag">Eenmalig</p>
                 </div>
             </div>
         </div>
