@@ -47,8 +47,8 @@
                         :months="true"
                         :pro-one="'12 u gratis gebruik vergaderruimten per week, <i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
-                        :pro-three="'toegang 8.00 u – 22.00 u'"
-                        :pro-four="'Ma t/m Za: 8.00 u – 22.00 u'" />
+                        :pro-three="'Ma t/m Za: 8.00 u – 22.00 u'"
+                        :pro-four="'Zondag: 10.00 u – 17.00 u'" />
                 <pricing-card
                         :price-twelve-month="220"
                         :price-six-month="235"
@@ -57,7 +57,7 @@
                         :pro-one="'12 u gratis gebruik vergaderruimten per week, <i>mits beschikbaar</i>'"
                         :pro-two="'Wifi / Koffie / Thee'"
                         :pro-three="'Ma t/m Za: 8.00 u – 22.00 u'"
-                        :pro-four="'Ma t/m Za: 8.00 u – 22.00 u'"/>
+                        :pro-four="'Zondag: 10.00 u – 17.00 u'"/>
                 <pricing-card
                         :price-twelve-month="150"
                         :price-six-month="150"
