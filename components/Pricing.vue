@@ -349,6 +349,11 @@
         &:hover {
             transform : scale(1.01);
         }
+
+        @media  ('max-width: 380px') {
+            padding                    : 8px 16px 16px 16px;
+            margin                     : 21px 8px;
+        }
     }
 
     .cardsmall {
@@ -427,6 +432,10 @@
     li {
         padding   : 6px 0;
         font-size : 1rem;
+
+        @media ('max-width:360px') {
+            padding: 2px 0;
+        }
     }
 
     li:before {

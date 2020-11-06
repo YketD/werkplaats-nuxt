@@ -215,6 +215,10 @@
     .big-title {
         position : relative;
         z-index  : 1;
+
+        @media ('max-width: 360px') {
+            font-size: 32px;
+        }
     }
 
     .mobile-menu {

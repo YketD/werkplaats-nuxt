@@ -159,7 +159,6 @@
     @media ('max-width: 500px') {
       height           : 170px;
       background-image : url("/storage/img/homepage.png");
-
     }
   }
 
