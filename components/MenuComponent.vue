@@ -62,7 +62,8 @@
     }
 
     .logo {
-        height : 100%;
+        height  : 100%;
+        display : block;
 
         @media ('max-width: 1280px') {
             width  : 100%;
@@ -89,7 +90,7 @@
         font-size       : 32px;
 
         @media ('max-width: 1620px ') {
-            font-size: 28px;
+            font-size : 28px;
         }
 
         @media ('max-width: 1420px') {
@@ -190,7 +191,7 @@
             @media ('max-width : 500px') {
                 .calendar-icon {
                     text-align : left;
-                    width: 100%;
+                    width      : 100%;
                 }
             }
         }
@@ -215,8 +216,8 @@
             display        : flex;
             flex-direction : row;
             &:after {
-                content    : "Kalender";
-                width      : 100%;
+                content : "Kalender";
+                width   : 100%;
             }
         }
 
