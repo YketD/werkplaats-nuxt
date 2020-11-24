@@ -4,19 +4,7 @@
             <img class="logo" src="~/assets/img/werkplaats75c.png" />
         </div>
         <div class="right-menu-container">
-            <div class="menu-options">
-                <nuxt-link class="menu-item" to="/">Home</nuxt-link>
-                <nuxt-link class="menu-item" to="/contact">Contact</nuxt-link>
-                <nuxt-link class="menu-item" to="/werkplek-huren">Werkplek huren</nuxt-link>
-                <nuxt-link class="menu-item" to="/reserveren">Ruimte reserveren</nuxt-link>
-                <div class="calendar-icon-container menu-item">
-                    <a href="https://www.supersaas.nl/schedule/werkplaats75c/ruimte_reserveren" target="_blank">
-                        <div class="calendar-icon">
-                            <img class="icon" src="~/assets/img/calendar-2.png" />
-                        </div>
-                    </a>
-                </div>
-            </div>
+<!--            <menu-items />-->
 
             <div class="image-container">
                 <transition name="fade" mode="out-in">
@@ -24,12 +12,18 @@
                 </transition>
             </div>
         </div>
+        <div v-if="scrolledDown" class="sticky-menu">
+
+        </div>
     </div>
 </template>
 
 <script>
+    import MenuItems from "~/components/menuItems";
+
     export default {
         name: "MenuComponent",
+        components: { MenuItems },
         data() {
             return {
                 menuImage: '/',
@@ -38,6 +32,11 @@
         computed: {
             image() {
                 return this.$store.state.menu.image;
+            },
+            scrolledDown() {
+                if (process.client)
+                    return (window.pageYOffset >= 100);
+                return false
             }
         }
     }
@@ -78,79 +77,11 @@
         }
     }
 
-    .menu-options {
-        width           : 100%;
-        display         : flex;
-        height          : 15px;
-        justify-content : space-between;
-        margin-bottom   : 24px;
-        font-family     : 'Poppins', sans-serif;
-        font-weight     : 300;
-        font-size       : 32px;
-
-        @media ('max-width: 1620px ') {
-            font-size: 28px;
-        }
-
-        @media ('max-width: 1420px') {
-            font-size : 24px;
-        }
-
-        @media ('max-width: 1280px') {
-            font-size : 20px;
-        }
-
-        @media ('max-width: 992px') {
-            flex-direction : column;
-            font-size      : 32px;
-            height         : 100%;
-        }
-
-        @media('max-width: 720px') {
-            font-size  : 24px;
-            text-align : left;
-        }
-
-        @media ('max-width: 500px') {
-            font-size    : 18px;
-            padding-left : 12px;
-        }
-    }
-
-    .menu-item {
-        height                     : 100%;
-        transition-property        : transform, text-shadow;
-        transition-duration        : .3s;
-        transition-timing-function : cubic-bezier(1.5, 2, 0.175, 1);
-
-        &:hover {
-            transform   : scale(1.1);
-            text-shadow : 0 3px 6px rgba(0, 0, 0, 0.35);
-
-            @media('max-width: 1024px') {
-                transform   : none;
-                text-shadow : none;
-            }
-        }
-
-        @media ('max-width : 992px') {
-            padding   : 0;
-            font-size : 3vw;
-        }
-        @media ('max-width : 500px') {
-            font-size : 13px;
-            height    : 20%;
-        }
-    }
-
-    a {
-        color : white;
-    }
-
     .right-menu-container {
         width          : 70%;
         display        : flex;
         flex-direction : column;
+        position: sticky;
     }
 
     .img {
@@ -190,7 +121,7 @@
             @media ('max-width : 500px') {
                 .calendar-icon {
                     text-align : left;
-                    width: 100%;
+                    width      : 100%;
                 }
             }
         }
@@ -215,8 +146,8 @@
             display        : flex;
             flex-direction : row;
             &:after {
-                content    : "Kalender";
-                width      : 100%;
+                content : "Kalender";
+                width   : 100%;
             }
         }
 

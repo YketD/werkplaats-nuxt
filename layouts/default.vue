@@ -1,8 +1,10 @@
 <template>
     <div id="app">
+        <sticky-menu />
         <transition name="fade" mode="in">
             <menu-component :image="image" class="menu-component" />
         </transition>
+
         <nuxt />
         <notifications group="reservations" />
         <notifications group="error" />
@@ -11,10 +13,11 @@
 
 <script>
     import MenuComponent from '../components/MenuComponent';
+    import StickyMenu from "~/components/StickyMenu";
 
     export default {
         name: 'app',
-        components: { MenuComponent },
+        components: { StickyMenu, MenuComponent },
         head: {
             title: 'Werkplaats 75c',
             meta: [
