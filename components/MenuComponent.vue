@@ -4,26 +4,23 @@
             <img class="logo" src="~/assets/img/werkplaats75c.png" />
         </div>
         <div class="right-menu-container">
-<!--            <menu-items />-->
-
+            <sticky-menu></sticky-menu>
             <div class="image-container">
                 <transition name="fade" mode="out-in">
                     <img class="img" :key="image" :src="image">
                 </transition>
             </div>
         </div>
-        <div v-if="scrolledDown" class="sticky-menu">
-
-        </div>
     </div>
 </template>
 
 <script>
     import MenuItems from "~/components/menuItems";
+    import StickyMenu from "@/components/StickyMenu";
 
     export default {
         name: "MenuComponent",
-        components: { MenuItems },
+        components: { StickyMenu, MenuItems },
         data() {
             return {
                 menuImage: '/',
@@ -49,10 +46,9 @@
     }
 
     .menu-container {
-        background      : #8f9e92;
-        display         : flex;
-        justify-content : space-between;
-        box-shadow      : 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        background            : #8f9e92;
+        display               : flex;
+        box-shadow            : 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
         @media ('max-width: 992px') {
             height          : 30vw;
@@ -61,17 +57,12 @@
     }
 
     .logo {
-        height  : 100%;
+        max-height  : 350px;
         display : block;
-
-        @media ('max-width: 1280px') {
-            width  : 100%;
-            height : auto;
-        }
     }
 
     .menu-logo {
-        width : 30%;
+        height: 350px;
 
         @media ('max-width: 992px') {
             width : 35%;
@@ -82,7 +73,7 @@
         width          : 70%;
         display        : flex;
         flex-direction : column;
-        position: sticky;
+        position       : sticky;
     }
 
     .img {
@@ -105,9 +96,6 @@
     .calendar-icon-container {
         text-align      : right;
         justify-content : right;
-        display         : flex;
-        align-content   : flex-end;
-        flex-direction  : row;
 
         a {
             @media('max-width : 920px') {
@@ -115,8 +103,6 @@
                 .calendar-icon {
                     width      : 100%;
                     text-align : center;
-
-
                 }
             }
             @media ('max-width : 500px') {
