@@ -29,7 +29,7 @@
                 e.preventDefault();
                 if (this.email && this.email != "" && this.validateEmail(this.email)) {
                     this.$axios.post('send-activity-admission',
-                        { 'email': this.email }
+                        { email: this.email }
                     ).then(response => {
                         this.$notify({
                             group: 'reservations',
