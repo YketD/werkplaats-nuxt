@@ -10,9 +10,9 @@
             <router-link to="/ondernemers" class="bubble bubble-2">
                 <div class="bubble-content">Ondernemers WP75C</div>
             </router-link>
-            <div class="bubble bubble-3 dark">
+            <router-link to="/activiteit" class="bubble bubble-3">
                 <div class="bubble-content">Activiteiten WP75C</div>
-            </div>
+            </router-link>
         </div>
 
         <div class="content-opaque"></div>

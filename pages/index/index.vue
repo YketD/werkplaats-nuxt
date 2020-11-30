@@ -47,7 +47,7 @@
     .green-content-box {
         font-size   : 1.5vw;
         line-height : 2.5vw;
-        max-height  : 10vw;
+        //max-height  : 10vw;
 
         @media ('max-width : 500px') {
             font-size : 14px;
