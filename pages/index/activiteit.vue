@@ -29,7 +29,7 @@
                 e.preventDefault();
                 if (this.email && this.email != "" && this.validateEmail(this.email)) {
                     this.$axios.post('send-activity-admission',
-                        this.email
+                        { 'email': this.email }
                     ).then(response => {
                         this.$notify({
                             group: 'reservations',
@@ -44,8 +44,7 @@
                             text: 'Er is iets fout gegaan. propeer het opnieuw'
                         });
                     });
-                }
-                else {
+                } else {
                     this.$notify({
                         group: 'error',
                         type: 'error',
@@ -77,21 +76,21 @@
             @media('max-width: 800px') {
                 grid-template-columns : 1fr;
                 align-content         : center;
-                margin: 0;
+                margin                : 0;
             }
 
             .activity-text {
                 .title {
                     font-size : 32px;
                     @media ('max-width: 800px') {
-                        font-size: 22px;
+                        font-size : 22px;
                     }
                 }
 
                 .subtitle {
                     font-size : 22px;
                     @media ('max-width: 800px') {
-                        font-size: 16px;
+                        font-size : 16px;
                     }
                 }
 
@@ -142,7 +141,7 @@
 
                 @media ('max-width: 800px') {
                     margin : auto;
-                    height: 300px;
+                    height : 300px;
                 }
             }
         }
