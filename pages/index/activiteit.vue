@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         name: "activiteit",
         data() {
@@ -28,7 +29,7 @@
             sendMailToHolly(e) {
                 e.preventDefault();
                 if (this.email && this.email != "" && this.validateEmail(this.email)) {
-                    this.$axios.post('send-activity-admission',
+                    axios.post('api/send-activity-admission',
                         { email: this.email }
                     ).then(response => {
                         this.$notify({

@@ -105,6 +105,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         name: "ContactPage",
         head: {
@@ -118,7 +119,8 @@
             ],
         },
         methods: {
-            sendMail() {
+            sendMail(e) {
+                e.preventDefault();
                 let accepted = true;
                 if (!this.mailData.mail) {
                     this.$notify({ group: 'error', type: 'error', title: 'Mislukt !', text: 'email niet ingevuld' });
@@ -147,7 +149,7 @@
                 }
 
                 if (accepted)
-                    this.$axios.post('api/send-message',
+                    axios.post('api/send-message',
                         this.mailData
                     ).then(response => {
                         this.$notify({

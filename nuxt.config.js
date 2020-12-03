@@ -62,7 +62,7 @@ export default {
     ],
     proxy: {
         '/api': {
-            target: 'http://localhost:8000/api',
+            target: process.env.API_URL,
             pathRewrite: {
                 '^/api' : '/'
             }
@@ -79,6 +79,6 @@ export default {
     },
 
     axios: {
-        baseURL: 'http://localhost:8000/api', // Used as fallback if no runtime config is provided
+        baseURL: process.env.API_URL, // Used as fallback if no runtime config is provided
     },
 }
