@@ -25,7 +25,7 @@
             <router-link to="/" class="mobile-menu-link">Werkplaats 75C</router-link>
             <router-link to="/over-ons" class="mobile-menu-link">Over ons</router-link>
             <router-link to="/ondernemers" class="mobile-menu-link">Ondernemers WP75C </router-link>
-            <div class="mobile-menu-link inactive">Activiteiten WP75C</div>
+            <router-link to="/activiteit" class="mobile-menu-link">Activiteiten WP75C</router-link>
             <a target="_blank" class="mobile-menu-link sub" href="/storage/img/docs/privacy.pdf">
                 <div class="">
                     Privacy policy
