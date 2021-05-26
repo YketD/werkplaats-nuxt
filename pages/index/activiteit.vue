@@ -11,7 +11,7 @@
                     <button @click="sendMailToHolly">Verzenden</button>
                 </form>
             </div>
-            <img class="activity-image" src="~/assets/img/poster.jpeg">
+            <img class="activity-image" src="~/assets/img/poster-new.png">
         </div>
     </div>
 </template>
