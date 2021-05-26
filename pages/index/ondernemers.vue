@@ -55,11 +55,9 @@
 
     .grid {
         display               : grid;
-        height                : 100%;
         grid-template-columns : repeat(4, 1fr);
         grid-template-rows    : repeat(2, 1fr);
-        grid-gap              : 50px;
-        top                   : 50px;
+        grid-gap              : 10px;
         @media(max-width : 992px) {
             grid-template-columns : repeat(3, 1fr);
             grid-template-rows    : repeat(2, 1fr);
@@ -68,12 +66,25 @@
             grid-template-columns : repeat(2, 124px);
             grid-template-rows    : repeat(4, 124px);
             top                   : 0;
+            grid-gap: 50px;
         }
 
-
         .grid-item {
-            position      : relative;
-
+            //position      : relative;
+            height: 12vw;
+            width: 12vw;
+            @media ('max-width: 1400px') {
+                height: 13vw;
+                width: 13vw;
+            }
+            @media ('max-width: 1000px') {
+                height: 20vw;
+                width: 20vw;
+            }
+            @media ('max-width: 500px') {
+                height: 30vw;
+                width: 30vw;
+            }
             &.blank {
                 background-color : grey;
                 border-radius    : 100%;
