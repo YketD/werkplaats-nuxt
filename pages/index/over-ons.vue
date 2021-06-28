@@ -17,7 +17,7 @@
                     andere
                     oplossingen mogelijk.
                 </div>
-                <img width="88" height="87" class="image" src="~/assets/img/renate.jpg" />
+                <img width="88" height="87" class="image" src="~/assets/img/renate-new.jpg" />
 
             </div>
             <div class="over">
