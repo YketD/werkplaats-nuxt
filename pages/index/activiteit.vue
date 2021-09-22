@@ -3,7 +3,7 @@
         <div class="activity">
             <div class="activity-text">
                 <h1 class="title">Nieuwe activiteit!</h1>
-                <h2 class="subtitle">Mini-shoot</h2>
+                <h2 class="subtitle">Interieur advies</h2>
                 <p class="description">Geinteresseerd in deelname? Vul hieronder je email adres in en er wordt contact
                                        met je opgenomen!</p>
                 <form>
@@ -11,7 +11,7 @@
                     <button @click="sendMailToHolly">Verzenden</button>
                 </form>
             </div>
-            <img class="activity-image" src="~/assets/img/poster-new.png">
+            <img class="activity-image" src="~/assets/img/poster.png">
         </div>
     </div>
 </template>
