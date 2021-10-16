@@ -139,11 +139,6 @@
                         font-size : 14px;
                     }
                 }
-                .description {
-                    height: 100%;
-                    position: relative;
-                    top: 0;
-                }
             }
 
             .activity-image {
