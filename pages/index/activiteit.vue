@@ -2,16 +2,24 @@
     <div class="activity-container">
         <div class="activity">
             <div class="activity-text">
-                <h1 class="title">Nieuwe activiteit!</h1>
-                <h2 class="subtitle">Interieur advies</h2>
-                <p class="description">Geinteresseerd in deelname? Vul hieronder je email adres in en er wordt contact
-                                       met je opgenomen!</p>
+                <h1 class="title">Ladies night!</h1>
+<!--                <h2 class="subtitle">Interieur advies</h2>-->
+                <p class="description">Op donderdag 4 november organiseren wij samen met Sylvia Bouwer, ondernemerscoach, een
+                                       netwerkbijeenkomst speciaal voor gelijkgestemde vrouwelijke dienstverlenende ondernemers.<br/>
+                                       Deze avond is erop gericht om op een ontspannende manier nieuwe relaties op te bouwen en je netwerk te
+                                       vergroten. <br />
+                                       We starten met een lezing van Sylvia: “In 5 stappen naar een succesvolle praktijk.”<br/>
+                                       In het tweede deel gaan we speeddaten en we sluiten af met een borrel.<br/><br/>
+                                       De kosten bedragen € 10,00 (excl btw).<br/>
+                                       Bij binnenkomst betaal je deze snel &amp; makkelijk met een QR-code.<br/><br/>
+                                       Wil jij er ook bij zijn?<br/>
+                                       Vul jouw mailadres hieronder in en meld je aan.</p>
                 <form>
                     <input type="email" v-model="email" />
                     <button @click="sendMailToHolly">Verzenden</button>
                 </form>
             </div>
-            <img class="activity-image" src="~/assets/img/poster.png">
+            <img class="activity-image" src="~/assets/img/ladies-night.jpg">
         </div>
     </div>
 </template>
@@ -78,6 +86,7 @@
                 grid-template-columns : 1fr;
                 align-content         : center;
                 margin                : 0;
+                height: 140%;
             }
 
             .activity-text {
@@ -129,6 +138,11 @@
                     @media ('max-width : 500px') {
                         font-size : 14px;
                     }
+                }
+                .description {
+                    height: 100%;
+                    position: relative;
+                    top: 0;
                 }
             }
 
